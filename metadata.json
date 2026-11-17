@@ -1,0 +1,8 @@
+{
+  "name": "Enlight Academy Pvt. Ltd.",
+  "description": "Complete medical training, clinical simulation, global nursing licensure preparation, City & Guilds (UK) health and social care diplomas, and CTEVT affiliated programmes in Nepal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
