@@ -141,3 +141,46 @@ export function generateReferenceCode(programCode: string, sequenceNumber: numbe
   const padded = String(Math.max(1, sequenceNumber)).padStart(4, '0');
   return `EA-2026-${prefix}-${padded}`;
 }
+
+export type LicensureExamFilter = 'all' | 'nnc' | 'nclex' | 'osce' | 'middle-east';
+
+export interface StudentTestimonial {
+  id: string;
+  studentName: string;
+  role: string;
+  organization: string;
+  examId: Exclude<LicensureExamFilter, 'all'>;
+  examLabel: string;
+  passedYear: string;
+  studyMode: string;
+  outcome: string;
+  quote: string;
+}
+
+export function filterTestimonialsByExam(
+  testimonials: StudentTestimonial[],
+  examFilter: LicensureExamFilter
+): StudentTestimonial[] {
+  if (examFilter === 'all') {
+    return testimonials;
+  }
+  return testimonials.filter((item) => item.examId === examFilter);
+}
+
+export function countTestimonialsByExam(
+  testimonials: StudentTestimonial[]
+): Record<LicensureExamFilter, number> {
+  const counts: Record<LicensureExamFilter, number> = {
+    all: testimonials.length,
+    nnc: 0,
+    nclex: 0,
+    osce: 0,
+    'middle-east': 0,
+  };
+
+  for (const item of testimonials) {
+    counts[item.examId] += 1;
+  }
+
+  return counts;
+}

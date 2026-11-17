@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { ACADEMY_FACTS, COURSE_PROGRAMS, CourseProgram } from '../data/academyData';
+import { AcademyPhoto } from './AcademyPhoto';
 
 interface HeroSectionProps {
   onBrowsePrograms: () => void;
@@ -28,6 +29,9 @@ interface SpotlightTrack {
   subtitle: string;
   duration: string;
   pathway: string;
+  imageSrc: string;
+  imageAlt: string;
+  imageAspect: string;
   highlights: string[];
   programId: string;
 }
@@ -42,6 +46,10 @@ const SPOTLIGHT_TRACKS: SpotlightTrack[] = [
       'Megacode team resuscitation, 12-lead arrhythmia recognition, airway management, and post-cardiac arrest care.',
     duration: '3 – 5 Days Simulation',
     pathway: 'AHA & Non-AHA Provider Tracks',
+    imageSrc: '/src/assets/images/acls_bls_simulation_lab_1794907974608.jpg',
+    imageAlt:
+      'Enlight Academy clinical team practising ACLS megacode resuscitation with simulation manikin and cardiac monitor',
+    imageAspect: 'aspect-video',
     highlights: [
       'Bradycardia, Tachycardia & Cardiac Arrest Algorithms',
       'Synchronized Cardioversion & Defibrillation Drills',
@@ -58,6 +66,10 @@ const SPOTLIGHT_TRACKS: SpotlightTrack[] = [
       'High-quality adult, child, and infant chest compressions, bag-mask ventilation, AED deployment, and choking rescue.',
     duration: '1 – 2 Days Hands-On',
     pathway: 'Healthcare Providers & Responders',
+    imageSrc: '/src/assets/images/acls_bls_simulation_lab_1794907974608.jpg',
+    imageAlt:
+      'Healthcare trainees performing hands-on Basic Life Support CPR and bag-mask ventilation drills in simulation lab',
+    imageAspect: 'aspect-video',
     highlights: [
       'Compression Depth, Recoil & Ratio Feedback Manikins',
       'Single-Rescuer & Two-Rescuer Team CPR Flows',
@@ -74,6 +86,10 @@ const SPOTLIGHT_TRACKS: SpotlightTrack[] = [
       'Internationally recognised UK Health & Social Care qualification alongside practical CTEVT-aligned caregiver competencies.',
     duration: '16 Weeks + Portfolio',
     pathway: 'City & Guilds (UK) Level 2 Approved',
+    imageSrc: '/src/assets/images/caregiver_age_care_training_1794907975944.jpg',
+    imageAlt:
+      'City and Guilds UK Caregiver trainees checking vital signs and providing bedside age care under instructor supervision',
+    imageAspect: 'aspect-video',
     highlights: [
       'Safe Manual Handling, Mobility & Fall Prevention',
       'Dementia Support, Nutrition & Safeguarding Standards',
@@ -151,12 +167,12 @@ export function HeroSection({
 
           {/* Right Column: Interactive ACLS / BLS / Caregiver Showcase Card */}
           <div className="lg:col-span-5 flex">
-            <div className="w-full bg-[#F7F9F7] border border-[#DCE3DE] rounded-xl p-6 sm:p-7 flex flex-col justify-between gap-5">
+            <div className="w-full bg-[#F7F9F7] border border-[#DCE3DE] rounded-xl p-6 sm:p-7 flex flex-col justify-between gap-4">
               {/* Institutional Seal + Track Switcher */}
               <div className="space-y-4 pb-4 border-b border-[#DCE3DE]">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-12 w-12 rounded-lg bg-white p-1 flex items-center justify-center shrink-0">
+                    <div className="h-11 w-11 rounded-lg bg-white p-1 flex items-center justify-center shrink-0">
                       <img
                         src={ACADEMY_FACTS.logoPath}
                         alt="Official seal of Enlight Academy Pvt. Ltd."
@@ -168,8 +184,8 @@ export function HeroSection({
                       <p className="font-editorial text-sm font-semibold text-[#102018] truncate">
                         Flagship Cohorts 2026
                       </p>
-                      <p className="text-xs text-[#4A5D52] truncate">
-                        Select a track to preview modules
+                      <p className="text-xs text-[#4A5D52]">
+                        Preview simulation &amp; modules
                       </p>
                     </div>
                   </div>
@@ -210,7 +226,14 @@ export function HeroSection({
                 className="space-y-4 flex-1 flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2 text-xs">
+                  <AcademyPhoto
+                    src={currentTrack.imageSrc}
+                    alt={currentTrack.imageAlt}
+                    aspectClass={currentTrack.imageAspect}
+                    objectPositionClass="object-[50%_26%]"
+                  />
+
+                  <div className="flex items-center justify-between gap-2 text-xs pt-1">
                     <span className="font-mono text-[#0E5A5A]">{currentTrack.code}</span>
                     {currentTrack.key === 'acls' && (
                       <Activity className="h-4 w-4 text-[#164424] shrink-0" aria-hidden="true" />
@@ -230,35 +253,6 @@ export function HeroSection({
                   <p className="text-xs sm:text-sm text-[#3E4F45] leading-relaxed">
                     {currentTrack.subtitle}
                   </p>
-
-                  {/* Visual Waveform for ACLS/BLS or Caregiver Competency Bar */}
-                  {currentTrack.key !== 'caregiver' ? (
-                    <svg
-                      viewBox="0 0 360 52"
-                      className="w-full h-11 text-[#164424]"
-                      role="img"
-                      aria-label="Resuscitation and cardiac rhythm waveform"
-                    >
-                      <line x1="0" y1="28" x2="360" y2="28" stroke="#DCE3DE" strokeWidth="1" />
-                      <path
-                        d={
-                          currentTrack.key === 'acls'
-                            ? 'M0 28 L34 28 L42 24 L50 28 L60 28 L66 34 L74 6 L82 44 L90 28 L108 28 L118 20 L130 28 L184 28 L192 24 L200 28 L210 28 L216 34 L224 6 L232 44 L240 28 L258 28 L268 20 L280 28 L360 28'
-                            : 'M0 28 L30 28 L42 14 L54 28 L92 28 L104 14 L116 28 L154 28 L166 14 L178 28 L216 28 L228 14 L240 28 L278 28 L290 14 L302 28 L360 28'
-                        }
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  ) : (
-                    <div className="py-2 border-t border-b border-[#DCE3DE] flex items-center justify-between text-xs text-[#3E4F45]">
-                      <span>UK Level 2 Health &amp; Social Care</span>
-                      <span className="font-mono text-[#164424]">Practical + Portfolio</span>
-                    </div>
-                  )}
 
                   <ul className="space-y-1.5 pt-1 text-xs text-[#102018]">
                     {currentTrack.highlights.map((item) => (

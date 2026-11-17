@@ -3,10 +3,13 @@ import assert from 'node:assert/strict';
 import { COURSE_PROGRAMS } from '../data/academyData';
 import {
   countProgramsByGroup,
+  countTestimonialsByExam,
   filterPrograms,
+  filterTestimonialsByExam,
   generateReferenceCode,
   getPathForRoute,
   parseRouteFromLocation,
+  StudentTestimonial,
   validateInquiryForm,
 } from './academyLogic';
 
@@ -90,4 +93,57 @@ test('validateInquiryForm rejects empty or invalid fields and accepts valid inpu
 test('generateReferenceCode formats deterministic application receipt codes', () => {
   assert.equal(generateReferenceCode('EA-NUR-101', 1), 'EA-2026-EANUR1-0001');
   assert.equal(generateReferenceCode('EA-CG-301', 42), 'EA-2026-EACG30-0042');
+});
+
+test('filterTestimonialsByExam and countTestimonialsByExam group student pass stories accurately', () => {
+  const sampleTestimonials: StudentTestimonial[] = [
+    {
+      id: 't1',
+      studentName: 'Pratibha Thapa, RN',
+      role: 'Registered Nurse',
+      organization: 'Texas Placement',
+      examId: 'nclex',
+      examLabel: 'Next-Gen NCLEX-RN',
+      passedYear: '2026 Cohort',
+      studyMode: 'Live + CAT Mocks',
+      outcome: 'Passed in 85 Questions',
+      quote: 'Structured mock analytics built clarity.',
+    },
+    {
+      id: 't2',
+      studentName: 'Sanjita Shrestha, B.Sc. Nursing',
+      role: 'Registered Adult Nurse',
+      organization: 'UK NHS Pathway',
+      examId: 'osce',
+      examLabel: 'NMC UK OSCE & CBT',
+      passedYear: '2026 Cohort',
+      studyMode: '10-Station Simulation',
+      outcome: 'Cleared All 10 Stations',
+      quote: 'Timed APIE drills fixed my confidence.',
+    },
+    {
+      id: 't3',
+      studentName: 'Binita Tamang, PCL Nursing',
+      role: 'Staff Nurse',
+      organization: 'Kathmandu Hospital',
+      examId: 'nnc',
+      examLabel: 'Nepal Nursing Council (NNC)',
+      passedYear: '2026 Cohort',
+      studyMode: 'Live Classes',
+      outcome: 'Passed First Sitting',
+      quote: 'Mock walkthroughs targeted weak domains.',
+    },
+  ];
+
+  assert.equal(filterTestimonialsByExam(sampleTestimonials, 'all').length, 3);
+  assert.equal(filterTestimonialsByExam(sampleTestimonials, 'nclex').length, 1);
+  assert.equal(filterTestimonialsByExam(sampleTestimonials, 'osce')[0].id, 't2');
+  assert.equal(filterTestimonialsByExam(sampleTestimonials, 'middle-east').length, 0);
+
+  const counts = countTestimonialsByExam(sampleTestimonials);
+  assert.equal(counts.all, 3);
+  assert.equal(counts.nclex, 1);
+  assert.equal(counts.osce, 1);
+  assert.equal(counts.nnc, 1);
+  assert.equal(counts['middle-east'], 0);
 });

@@ -14,7 +14,9 @@ import {
   LICENSURE_TRACKS,
 } from '../data/academyData';
 import { PageRoute } from '../utils/academyLogic';
+import { AcademyPhoto } from './AcademyPhoto';
 import { ServicesSection } from './ServicesSection';
+import { StudentTestimonials } from './StudentTestimonials';
 
 interface HomeOverviewSectionsProps {
   onNavigate: (route: PageRoute) => void;
@@ -112,7 +114,14 @@ export function HomeOverviewSections({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Highlight 1: ACLS & BLS Life Support (Spans 7 cols on desktop for visual anchor) */}
             <article className="lg:col-span-7 bg-[#164424] text-white rounded-xl p-7 sm:p-8 flex flex-col justify-between gap-6">
-              <div className="space-y-4">
+              <div className="space-y-5">
+                <AcademyPhoto
+                  src="/src/assets/images/acls_bls_simulation_lab_1794907974608.jpg"
+                  alt="Instructors and clinicians performing AHA ACLS cardiac arrest simulation with defibrillator cart and ECG telemetry in Kathmandu"
+                  aspectClass="aspect-video"
+                  objectPositionClass="object-[50%_26%]"
+                />
+
                 <div className="flex items-center justify-between gap-3 text-xs text-white/80">
                   <span className="font-mono">EA-EMG-102 · AHA &amp; Non-AHA Tracks</span>
                   <HeartPulse className="h-5 w-5 text-white/90 shrink-0" aria-hidden="true" />
@@ -166,7 +175,14 @@ export function HomeOverviewSections({
             {/* Highlight 2: Caregiver Training (Spans 5 cols) */}
             <article className="lg:col-span-5 bg-white border border-[#DCE3DE] rounded-xl p-7 sm:p-8 flex flex-col justify-between gap-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 text-xs text-[#0E5A5A]">
+                <AcademyPhoto
+                  src="/src/assets/images/caregiver_age_care_training_1794907975944.jpg"
+                  alt="City and Guilds UK Caregiver training candidates measuring patient blood pressure under clinical instructor assessment"
+                  aspectClass="aspect-[4/3]"
+                  objectPositionClass="object-[50%_24%]"
+                />
+
+                <div className="flex items-center justify-between gap-3 text-xs text-[#0E5A5A] pt-1">
                   <span className="font-mono">EA-CG-301 · City &amp; Guilds (UK) &amp; CTEVT</span>
                   <HeartHandshake className="h-5 w-5 text-[#164424] shrink-0" aria-hidden="true" />
                 </div>
@@ -210,17 +226,26 @@ export function HomeOverviewSections({
 
           {/* Supporting Acute & Critical Care Bridge Banner */}
           {criticalCareProgram && (
-            <div className="bg-white border border-[#DCE3DE] rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-start gap-3.5">
-                <Stethoscope className="h-5 w-5 text-[#164424] shrink-0 mt-1" aria-hidden="true" />
-                <div className="space-y-1">
-                  <p className="text-xs font-mono text-[#0E5A5A]">
-                    {criticalCareProgram.code} · {criticalCareProgram.duration}
+            <div className="bg-white border border-[#DCE3DE] rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5 min-w-0">
+                <AcademyPhoto
+                  src="/src/assets/images/icu_ventilator_clinical_lab_1794907975520.jpg"
+                  alt="Critical Care Nurse Educator demonstrating mechanical ventilator waveforms alongside intubated ICU simulation manikin"
+                  aspectClass="aspect-[4/3]"
+                  objectPositionClass="object-[50%_22%]"
+                  className="w-full sm:w-44 shrink-0"
+                />
+                <div className="space-y-1.5 min-w-0">
+                  <p className="text-xs font-mono text-[#0E5A5A] flex items-center gap-1.5">
+                    <Stethoscope className="h-3.5 w-3.5 text-[#164424] shrink-0" aria-hidden="true" />
+                    <span>
+                      {criticalCareProgram.code} · {criticalCareProgram.duration}
+                    </span>
                   </p>
                   <h3 className="font-editorial text-lg font-semibold text-[#102018]">
                     Combining BLS &amp; ACLS with Critical Care Nursing &amp; Ventilator Workshop
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#3E4F45]">
+                  <p className="text-xs sm:text-sm text-[#3E4F45] leading-relaxed">
                     Nurses and medical officers frequently pair BLS/ACLS certification with our 8-week Critical Care Nursing and Mechanical Ventilation workshops.
                   </p>
                 </div>
@@ -255,115 +280,141 @@ export function HomeOverviewSections({
 
       {/* Institutional Overview, Study Modes & Global Licensure Summary */}
       <section className="py-16 bg-[#F7F9F7] border-b border-[#DCE3DE]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-6 space-y-6">
-            <div className="space-y-3">
-              <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
-                Institutional Overview · {ACADEMY_FACTS.location}
-              </p>
-              <h2 className="font-editorial text-3xl sm:text-4xl font-semibold tracking-tight text-[#102018] text-balance">
-                Clinical Simulation Meets Global Exam &amp; Vocational Standards
-              </h2>
-              <p className="text-sm sm:text-base text-[#3E4F45] leading-relaxed">
-                {ACADEMY_FACTS.legalName} unites bedside simulation with rigorous test preparation across healthcare, research, and management. As a City &amp; Guilds (UK) approved training centre and CTEVT-affiliated short-course provider, we prepare nurses, doctors, and caregivers for domestic practice and international placement.
-              </p>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-6 space-y-6">
+              <div className="space-y-3">
+                <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
+                  Institutional Overview · {ACADEMY_FACTS.location}
+                </p>
+                <h2 className="font-editorial text-3xl sm:text-4xl font-semibold tracking-tight text-[#102018] text-balance">
+                  Clinical Simulation Meets Global Exam &amp; Vocational Standards
+                </h2>
+                <p className="text-sm sm:text-base text-[#3E4F45] leading-relaxed">
+                  {ACADEMY_FACTS.legalName} unites bedside simulation with rigorous test preparation across healthcare, research, and management. As a City &amp; Guilds (UK) approved training centre and CTEVT-affiliated short-course provider, we prepare nurses, doctors, and caregivers for domestic practice and international placement.
+                </p>
+              </div>
+
+              <div className="bg-white border border-[#DCE3DE] rounded-xl divide-y divide-[#EEF2EF]">
+                <div className="p-4 sm:px-5 flex items-start gap-3">
+                  <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-[#102018]">
+                      Live Classes, Online Courses &amp; Mock Tests
+                    </p>
+                    <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                      Daily interactive faculty sessions paired with recorded archives and timed mock exams.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-4 sm:px-5 flex items-start gap-3">
+                  <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-[#102018]">
+                      Approved City &amp; Guilds (UK) &amp; CTEVT Pathways
+                    </p>
+                    <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                      Accredited Level 2 Age Care diploma and competency-based CTEVT vocational short courses.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-4 sm:px-5 flex items-start gap-3">
+                  <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-[#102018]">
+                      Physician Fellowships &amp; FMG/IMG Observerships
+                    </p>
+                    <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                      Supervised hospital rotations, Regional Anesthesia, and Laparoscopic Simulation tracks.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-5 pt-1">
+                <button
+                  type="button"
+                  onClick={() => onNavigate('faculty')}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164424] hover:underline cursor-pointer"
+                >
+                  <span>Meet Our Clinical Faculty</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('licensure')}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E5A5A] hover:underline cursor-pointer"
+                >
+                  <span>Compare Licensure Blueprints</span>
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
             </div>
 
-            <div className="bg-white border border-[#DCE3DE] rounded-xl divide-y divide-[#EEF2EF]">
-              <div className="p-4 sm:px-5 flex items-start gap-3">
-                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+            <div className="lg:col-span-6 bg-white border border-[#DCE3DE] rounded-xl p-6 sm:p-7 space-y-5">
+              <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-[#EEF2EF]">
                 <div>
-                  <p className="text-sm font-semibold text-[#102018]">
-                    Live Classes, Online Courses &amp; Mock Tests
-                  </p>
-                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
-                    Daily interactive faculty sessions paired with recorded archives and timed mock exams.
-                  </p>
+                  <p className="text-xs font-mono text-[#0E5A5A]">Exam Blueprints</p>
+                  <h3 className="font-editorial text-xl sm:text-2xl font-semibold text-[#102018] mt-1">
+                    Global Nursing &amp; Medical Licensure
+                  </h3>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('licensure')}
+                  className="text-xs font-semibold text-[#164424] hover:underline cursor-pointer whitespace-nowrap shrink-0"
+                >
+                  All Tracks
+                </button>
               </div>
-              <div className="p-4 sm:px-5 flex items-start gap-3">
-                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-sm font-semibold text-[#102018]">
-                    Approved City &amp; Guilds (UK) &amp; CTEVT Pathways
-                  </p>
-                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
-                    Accredited Level 2 Age Care diploma and competency-based CTEVT vocational short courses.
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:px-5 flex items-start gap-3">
-                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-sm font-semibold text-[#102018]">
-                    Physician Fellowships &amp; FMG/IMG Observerships
-                  </p>
-                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
-                    Supervised hospital rotations, Regional Anesthesia, and Laparoscopic Simulation tracks.
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-wrap items-center gap-5 pt-1">
-              <button
-                type="button"
-                onClick={() => onNavigate('faculty')}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164424] hover:underline cursor-pointer"
-              >
-                <span>Meet Our Clinical Faculty</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('licensure')}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E5A5A] hover:underline cursor-pointer"
-              >
-                <span>Compare Licensure Blueprints</span>
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              </button>
+              <div className="divide-y divide-[#EEF2EF]">
+                {LICENSURE_TRACKS.map((track) => (
+                  <div key={track.id} className="py-3.5 first:pt-0 last:pb-0 flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono text-[#0E5A5A]">
+                        {track.code} · {track.region}
+                      </p>
+                      <p className="text-sm font-semibold text-[#102018]">{track.name}</p>
+                      <p className="text-xs text-[#4A5D52] leading-relaxed">{track.deliveryCadence}</p>
+                    </div>
+                    <span className="text-xs font-mono text-[#164424] shrink-0 text-right tabular-nums">
+                      {track.mockSchedule.split(' ')[0]} Mocks
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-6 bg-white border border-[#DCE3DE] rounded-xl p-6 sm:p-7 space-y-5">
-            <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-[#EEF2EF]">
-              <div>
-                <p className="text-xs font-mono text-[#0E5A5A]">Exam Blueprints</p>
-                <h3 className="font-editorial text-xl sm:text-2xl font-semibold text-[#102018] mt-1">
-                  Global Nursing &amp; Medical Licensure
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => onNavigate('licensure')}
-                className="text-xs font-semibold text-[#164424] hover:underline cursor-pointer whitespace-nowrap shrink-0"
-              >
-                All Tracks
-              </button>
-            </div>
-
-            <div className="divide-y divide-[#EEF2EF]">
-              {LICENSURE_TRACKS.map((track) => (
-                <div key={track.id} className="py-3.5 first:pt-0 last:pb-0 flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <p className="text-xs font-mono text-[#0E5A5A]">
-                      {track.code} · {track.region}
-                    </p>
-                    <p className="text-sm font-semibold text-[#102018]">{track.name}</p>
-                    <p className="text-xs text-[#4A5D52] leading-relaxed">{track.deliveryCadence}</p>
-                  </div>
-                  <span className="text-xs font-mono text-[#164424] shrink-0 text-right tabular-nums">
-                    {track.mockSchedule.split(' ')[0]} Mocks
-                  </span>
-                </div>
-              ))}
-            </div>
+          {/* Editorial Campus & Simulation Visual Strip */}
+          <div className="pt-8 border-t border-[#DCE3DE] grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AcademyPhoto
+              src="/src/assets/images/icu_ventilator_clinical_lab_1794907975520.jpg"
+              alt="Critical Care nurse educator explaining mechanical ventilator loops and respiratory waveforms at Enlight Academy simulation bay"
+              aspectClass="aspect-[4/3]"
+              objectPositionClass="object-[50%_22%]"
+              caption="Fig. 1 — Mechanical Ventilation & ICU Simulation Bay, Kathmandu"
+            />
+            <AcademyPhoto
+              src="/src/assets/images/medical_licensure_seminar_1794907976431.jpg"
+              alt="Senior clinical physician teaching cardiac ECG ST-elevation and ACLS management to white-coat trainees in Kathmandu lecture hall"
+              aspectClass="aspect-[4/3]"
+              objectPositionClass="object-[50%_24%]"
+              caption="Fig. 2 — Live Faculty ECG & Licensure Exam Seminar"
+            />
           </div>
         </div>
       </section>
 
+      {/* Verified Licensure Pass Stories (Fetched Graduate Testimonials) */}
+      <StudentTestimonials
+        onNavigate={onNavigate}
+        onApplyLicensure={() => onApplyProgramId('global-nursing-licensure')}
+      />
+
       {/* 5-Page Institutional Gateway Directory + Direct Admissions Callout */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#F7F9F7]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 space-y-10">
           <div className="max-w-2xl space-y-2">
             <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
@@ -378,7 +429,7 @@ export function HomeOverviewSections({
             {DIVISION_GATEWAYS.map((item, idx) => (
               <div
                 key={item.route}
-                className={`bg-[#F7F9F7] border border-[#DCE3DE] hover:border-[#164424]/60 rounded-xl p-6 flex flex-col justify-between gap-6 transition-colors duration-150 ${
+                className={`bg-white border border-[#DCE3DE] hover:border-[#164424]/60 rounded-xl p-6 flex flex-col justify-between gap-6 transition-colors duration-150 ${
                   idx < 2 ? 'lg:col-span-3' : idx === 4 ? 'md:col-span-2 lg:col-span-2' : 'lg:col-span-2'
                 }`}
               >

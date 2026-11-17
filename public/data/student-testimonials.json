@@ -1,0 +1,74 @@
+[
+  {
+    "id": "st-nclex-1",
+    "studentName": "Pratibha Thapa, RN",
+    "role": "Registered Nurse (Emergency & Acute Care)",
+    "organization": "Patan Academy Cohort · Placed in Texas, USA",
+    "examId": "nclex",
+    "examLabel": "Next-Gen NCLEX-RN",
+    "passedYear": "2026 Cohort",
+    "studyMode": "Live Clinical Judgment Classes + 10 CAT Mocks",
+    "outcome": "Passed in 85 Questions (First Attempt)",
+    "quote": "Before joining Enlight Academy, unfolding Next-Gen case studies felt overwhelming. Working through the clinical judgment rationales and weekend CAT mock analytics raised my readiness score steadily until the real exam stopped at 85 questions."
+  },
+  {
+    "id": "st-osce-1",
+    "studentName": "Sanjita Shrestha, B.Sc. Nursing",
+    "role": "Registered Adult Nurse",
+    "organization": "UK NHS Acute Trust Pathway",
+    "examId": "osce",
+    "examLabel": "NMC UK OSCE & CBT",
+    "passedYear": "2026 Cohort",
+    "studyMode": "10-Station Simulation Lab + Timed APIE Drills",
+    "outcome": "Cleared All 10 OSCE Stations",
+    "quote": "Practicing aseptic non-touch technique and verbalizing every APIE step against real examiners' timers in Kathmandu eliminated my station anxiety. When I arrived in the UK for assessment, every handover and drug check felt second nature."
+  },
+  {
+    "id": "st-nnc-1",
+    "studentName": "Binita Tamang, PCL Nursing",
+    "role": "Staff Nurse, Medical-Surgical Ward",
+    "organization": "Kathmandu Teaching Hospital Placement",
+    "examId": "nnc",
+    "examLabel": "Nepal Nursing Council (NNC)",
+    "passedYear": "2026 Cohort",
+    "studyMode": "Morning Live Concept Review + 12 Proctored CBT Mocks",
+    "outcome": "Passed NNC Licensing Exam (First Sitting)",
+    "quote": "I struggled to tie maternal-child, pharmacology, and med-surg guidelines together while working ward shifts. The daily live concept sessions and post-mock faculty walkthroughs highlighted exactly which weak topics to fix before exam day."
+  },
+  {
+    "id": "st-me-1",
+    "studentName": "Roshani Adhikari, BNS",
+    "role": "Critical Care Staff Nurse",
+    "organization": "Dubai Health Authority (DHA) Licensed",
+    "examId": "middle-east",
+    "examLabel": "Middle East Licensure (DHA / HAAD)",
+    "passedYear": "2025 Cohort",
+    "studyMode": "Online Prometric Simulator + ICU Protocol Review",
+    "outcome": "Passed DHA Prometric on First Attempt",
+    "quote": "Transitioning from busy ICU duties made in-person classes tough, so the online course recordings paired with timed Prometric question banks kept me consistent. DataFlow and exam blueprint guidance helped me clear DHA smoothly."
+  },
+  {
+    "id": "st-nclex-2",
+    "studentName": "Aashish Bhattarai, B.Sc. Nursing",
+    "role": "Telemetry & Cardiac Care Nurse",
+    "organization": "Ontario Nursing Licensure Track",
+    "examId": "nclex",
+    "examLabel": "Next-Gen NCLEX-RN",
+    "passedYear": "2025 Cohort",
+    "studyMode": "ACLS Bridge + Adaptive Next-Gen Q-Bank",
+    "outcome": "Passed Next-Gen NCLEX-RN",
+    "quote": "Pairing my ACLS ECG training with Enlight Academy's Next-Gen NCLEX pharmacology and delegation workshops transformed how I read priority stems. Every mock debrief explained why distractors fail in clinical practice."
+  },
+  {
+    "id": "st-osce-2",
+    "studentName": "Nirmala Gurung, BN",
+    "role": "Orthopedic & Post-Op Ward Nurse",
+    "organization": "United Kingdom Care & NHS Transition",
+    "examId": "osce",
+    "examLabel": "NMC UK OSCE & CBT",
+    "passedYear": "2026 Cohort",
+    "studyMode": "Online CBT Prep + In-Person OSCE Remediation",
+    "outcome": "Passed CBT & Full UK OSCE Circuit",
+    "quote": "Earlier self-study left gaps in silent safety checks during medication administration stations. Direct rubric feedback from Enlight Academy's UK-experienced nurse educators fixed those habits in two weeks of simulation practice."
+  }
+]
