@@ -44,6 +44,15 @@ export function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-1.5 text-xs text-[#4A5D52]">
               <li>
                 <a
+                  href={getPathForRoute('home')}
+                  onClick={(e) => handleLink(e, 'home')}
+                  className="hover:text-[#164424]"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
                   href={getPathForRoute('programs')}
                   onClick={(e) => handleLink(e, 'programs')}
                   className="hover:text-[#164424]"

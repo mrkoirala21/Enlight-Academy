@@ -37,11 +37,23 @@ export function Navbar({ currentRoute, onNavigate }: NavbarProps) {
           </span>
         </a>
 
-        {/* Zone 2: 5 concise single-line nav links */}
+        {/* Zone 2: Single-line institutional navigation links */}
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-7 text-sm font-medium text-[#3E4F45]"
+          className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-medium text-[#3E4F45]"
         >
+          <a
+            href="/"
+            aria-current={currentRoute === 'home' ? 'page' : undefined}
+            onClick={(e) => handleNavClick(e, 'home')}
+            className={`whitespace-nowrap shrink-0 py-1 border-b focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#164424] rounded-sm ${
+              currentRoute === 'home'
+                ? 'text-[#164424] border-[#164424] font-semibold'
+                : 'border-transparent hover:text-[#164424] hover:border-[#164424]'
+            }`}
+          >
+            Home
+          </a>
           {PAGE_ROUTES.map((item) => {
             const isActive = currentRoute === item.id;
             return (
@@ -62,7 +74,7 @@ export function Navbar({ currentRoute, onNavigate }: NavbarProps) {
           })}
         </nav>
 
-        {/* Zone 3: 1 primary action + mobile menu toggle */}
+        {/* Zone 3: 1 primary action + mobile/tablet menu toggle */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             type="button"
@@ -80,7 +92,7 @@ export function Navbar({ currentRoute, onNavigate }: NavbarProps) {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-drawer"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-[#DCE3DE] text-[#102018] hover:bg-[#F7F9F7] cursor-pointer"
+            className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-[#DCE3DE] text-[#102018] hover:bg-[#F7F9F7] cursor-pointer"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -91,7 +103,7 @@ export function Navbar({ currentRoute, onNavigate }: NavbarProps) {
         <nav
           id="mobile-nav-drawer"
           aria-label="Mobile navigation"
-          className="md:hidden border-t border-[#DCE3DE] bg-white px-4 py-3 flex flex-col gap-1"
+          className="lg:hidden border-t border-[#DCE3DE] bg-white px-4 py-3 flex flex-col gap-1"
         >
           <a
             href="/"

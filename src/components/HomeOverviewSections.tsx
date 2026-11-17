@@ -1,5 +1,18 @@
-import { ArrowRight, ArrowUpRight, HeartHandshake, HeartPulse, Stethoscope } from 'lucide-react';
-import { COURSE_PROGRAMS, CourseProgram } from '../data/academyData';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  Clock,
+  HeartHandshake,
+  HeartPulse,
+  Stethoscope,
+} from 'lucide-react';
+import {
+  ACADEMY_FACTS,
+  COURSE_PROGRAMS,
+  CourseProgram,
+  LICENSURE_TRACKS,
+} from '../data/academyData';
 import { PageRoute } from '../utils/academyLogic';
 import { ServicesSection } from './ServicesSection';
 
@@ -240,9 +253,118 @@ export function HomeOverviewSections({
         onNavigate={onNavigate}
       />
 
-      {/* 5-Page Institutional Gateway Directory */}
-      <section className="py-16 bg-[#F7F9F7]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 space-y-8">
+      {/* Institutional Overview, Study Modes & Global Licensure Summary */}
+      <section className="py-16 bg-[#F7F9F7] border-b border-[#DCE3DE]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-6 space-y-6">
+            <div className="space-y-3">
+              <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
+                Institutional Overview · {ACADEMY_FACTS.location}
+              </p>
+              <h2 className="font-editorial text-3xl sm:text-4xl font-semibold tracking-tight text-[#102018] text-balance">
+                Clinical Simulation Meets Global Exam &amp; Vocational Standards
+              </h2>
+              <p className="text-sm sm:text-base text-[#3E4F45] leading-relaxed">
+                {ACADEMY_FACTS.legalName} unites bedside simulation with rigorous test preparation across healthcare, research, and management. As a City &amp; Guilds (UK) approved training centre and CTEVT-affiliated short-course provider, we prepare nurses, doctors, and caregivers for domestic practice and international placement.
+              </p>
+            </div>
+
+            <div className="bg-white border border-[#DCE3DE] rounded-xl divide-y divide-[#EEF2EF]">
+              <div className="p-4 sm:px-5 flex items-start gap-3">
+                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold text-[#102018]">
+                    Live Classes, Online Courses &amp; Mock Tests
+                  </p>
+                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                    Daily interactive faculty sessions paired with recorded archives and timed mock exams.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 sm:px-5 flex items-start gap-3">
+                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold text-[#102018]">
+                    Approved City &amp; Guilds (UK) &amp; CTEVT Pathways
+                  </p>
+                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                    Accredited Level 2 Age Care diploma and competency-based CTEVT vocational short courses.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 sm:px-5 flex items-start gap-3">
+                <CheckCircle2 className="h-4 w-4 text-[#164424] shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold text-[#102018]">
+                    Physician Fellowships &amp; FMG/IMG Observerships
+                  </p>
+                  <p className="text-xs text-[#4A5D52] mt-0.5 leading-relaxed">
+                    Supervised hospital rotations, Regional Anesthesia, and Laparoscopic Simulation tracks.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-5 pt-1">
+              <button
+                type="button"
+                onClick={() => onNavigate('faculty')}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164424] hover:underline cursor-pointer"
+              >
+                <span>Meet Our Clinical Faculty</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate('licensure')}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0E5A5A] hover:underline cursor-pointer"
+              >
+                <span>Compare Licensure Blueprints</span>
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 bg-white border border-[#DCE3DE] rounded-xl p-6 sm:p-7 space-y-5">
+            <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-[#EEF2EF]">
+              <div>
+                <p className="text-xs font-mono text-[#0E5A5A]">Exam Blueprints</p>
+                <h3 className="font-editorial text-xl sm:text-2xl font-semibold text-[#102018] mt-1">
+                  Global Nursing &amp; Medical Licensure
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => onNavigate('licensure')}
+                className="text-xs font-semibold text-[#164424] hover:underline cursor-pointer whitespace-nowrap shrink-0"
+              >
+                All Tracks
+              </button>
+            </div>
+
+            <div className="divide-y divide-[#EEF2EF]">
+              {LICENSURE_TRACKS.map((track) => (
+                <div key={track.id} className="py-3.5 first:pt-0 last:pb-0 flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="text-xs font-mono text-[#0E5A5A]">
+                      {track.code} · {track.region}
+                    </p>
+                    <p className="text-sm font-semibold text-[#102018]">{track.name}</p>
+                    <p className="text-xs text-[#4A5D52] leading-relaxed">{track.deliveryCadence}</p>
+                  </div>
+                  <span className="text-xs font-mono text-[#164424] shrink-0 text-right tabular-nums">
+                    {track.mockSchedule.split(' ')[0]} Mocks
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5-Page Institutional Gateway Directory + Direct Admissions Callout */}
+      <section className="py-16 bg-white">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 space-y-10">
           <div className="max-w-2xl space-y-2">
             <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
               Academic Structure · Explore by Division
@@ -252,11 +374,13 @@ export function HomeOverviewSections({
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DIVISION_GATEWAYS.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+            {DIVISION_GATEWAYS.map((item, idx) => (
               <div
                 key={item.route}
-                className="bg-white border border-[#DCE3DE] hover:border-[#164424]/60 rounded-xl p-6 flex flex-col justify-between gap-6 transition-colors duration-150"
+                className={`bg-[#F7F9F7] border border-[#DCE3DE] hover:border-[#164424]/60 rounded-xl p-6 flex flex-col justify-between gap-6 transition-colors duration-150 ${
+                  idx < 2 ? 'lg:col-span-3' : idx === 4 ? 'md:col-span-2 lg:col-span-2' : 'lg:col-span-2'
+                }`}
               >
                 <div className="space-y-2.5">
                   <div className="flex items-baseline gap-2.5">
@@ -270,7 +394,7 @@ export function HomeOverviewSections({
                   <p className="text-sm text-[#3E4F45] leading-relaxed">{item.summary}</p>
                 </div>
 
-                <div className="pt-3 border-t border-[#EEF2EF]">
+                <div className="pt-3 border-t border-[#DCE3DE]">
                   <button
                     type="button"
                     onClick={() => onNavigate(item.route)}
@@ -282,6 +406,37 @@ export function HomeOverviewSections({
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="bg-[#164424] text-white rounded-xl p-7 sm:p-9 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <p className="text-xs font-mono text-white/80 flex items-center gap-2">
+                <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>Counselling Hours: {ACADEMY_FACTS.hours}</span>
+              </p>
+              <h3 className="font-editorial text-2xl sm:text-3xl font-semibold leading-snug text-balance">
+                Ready to Enrol in ACLS, BLS, Caregiver or Global Licensure?
+              </h3>
+              <p className="text-sm text-white/85 leading-relaxed">
+                Reserve your seat for upcoming live classes, hands-on simulation lab rotations, or online mock test cohorts in {ACADEMY_FACTS.location}.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => onNavigate('admissions')}
+                className="px-6 py-3 text-sm font-semibold text-[#164424] bg-white hover:bg-[#F1F5F2] rounded-md transition-colors cursor-pointer whitespace-nowrap"
+              >
+                Open Admissions Form
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate('programs')}
+                className="px-5 py-3 text-sm font-semibold text-white border border-white/30 hover:bg-white/10 rounded-md transition-colors cursor-pointer whitespace-nowrap"
+              >
+                Browse All Courses
+              </button>
+            </div>
           </div>
         </div>
       </section>
