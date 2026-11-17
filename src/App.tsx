@@ -93,6 +93,8 @@ export default function App() {
             <HeroSection
               onBrowsePrograms={() => navigateTo('programs')}
               onOpenApply={() => navigateTo('admissions')}
+              onSelectProgram={(program) => setSelectedProgram(program)}
+              onApplyProgramId={(programId) => handleApplyForProgram(programId)}
             />
             <HomeOverviewSections
               onNavigate={navigateTo}
