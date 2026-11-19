@@ -67,6 +67,8 @@ export const ACADEMY_FACTS = {
   location: 'Kathmandu, Nepal',
   email: 'admissions@enlightacademy.com.np',
   phone: '+977-01-4529100',
+  whatsappNumber: '9809494619',
+  whatsappIntl: '+977 9809494619',
   hours: 'Sunday – Friday, 07:00 – 19:00 NPT',
 };
 
@@ -735,3 +737,174 @@ export const FACULTY_HIGHLIGHTS: FacultyHighlight[] = [
     experience: '11+ years health research & CTEVT curriculum',
   },
 ];
+
+export type FaqCategory = 'enrollment' | 'certification' | 'prerequisites';
+
+export interface AcademyFaqItem {
+  id: string;
+  category: FaqCategory;
+  categoryLabel: string;
+  question: string;
+  answer: string;
+  relatedProgramId?: string;
+  relatedProgramLabel?: string;
+}
+
+export const ACADEMY_FAQS: AcademyFaqItem[] = [
+  {
+    id: 'faq-enroll-process',
+    category: 'enrollment',
+    categoryLabel: 'Enrollment',
+    question: 'How do I enrol in an upcoming cohort and confirm my seat?',
+    answer:
+      'Submit the Admissions inquiry form above with your current qualification, preferred programme, and study mode (Live Classes, Online Courses & Mock Tests, or In-Person Clinical Simulation). Our academic desk verifies eligibility within one working day, shares batch timings and fee schedules, and issues a cohort seat confirmation—or message us directly on WhatsApp (+977 9809494619) during counselling hours (Sunday – Friday, 07:00 – 19:00 NPT).',
+  },
+  {
+    id: 'faq-enroll-modes',
+    category: 'enrollment',
+    categoryLabel: 'Enrollment',
+    question: 'Can working nurses and doctors join evening or online cohorts?',
+    answer:
+      'Yes. For NNC, Next-Gen NCLEX-RN, Middle East Prometric, and Research & Data Analysis programmes, Enlight Academy provides flexible morning and evening live faculty sessions paired with full recorded lecture archives and timed online mock exams. Hands-on skills stations—such as BLS/ACLS megacodes, Ventilator workshops, Dialysis, and UK OSCE simulation—schedule small-group practical slots around hospital shift rosters.',
+    relatedProgramId: 'global-nursing-licensure',
+    relatedProgramLabel: 'Global Nursing Licensure',
+  },
+  {
+    id: 'faq-enroll-documents',
+    category: 'enrollment',
+    categoryLabel: 'Enrollment',
+    question: 'What documents are required at the time of admission?',
+    answer:
+      'Applicants provide a valid citizenship or passport ID, academic transcript or council registration certificate (PCL/B.Sc. Nursing, MBBS/FMG, or +2/SEE certificate depending on track), and two passport photographs for practical lab badges. Caregiver diploma candidates also receive orientation on portfolio evidence logging.',
+  },
+  {
+    id: 'faq-cert-bls-acls',
+    category: 'certification',
+    categoryLabel: 'Certification Validity',
+    question: 'Are AHA and Non-AHA BLS & ACLS certificates valid for hospitals and overseas employers?',
+    answer:
+      'Yes. Our AHA-aligned BLS and ACLS certifications carry an official 2-year international validity cycle recognised by tertiary hospitals, critical care units, and overseas nurse/physician employers. Institutional Non-AHA resuscitation certificates verify hands-on CPR, AED, and megacode station mastery for domestic clinical privileging and academic onboarding.',
+    relatedProgramId: 'aha-non-aha-bls-acls',
+    relatedProgramLabel: 'AHA / Non-AHA BLS & ACLS',
+  },
+  {
+    id: 'faq-cert-caregiver-ctevt',
+    category: 'certification',
+    categoryLabel: 'Certification Validity',
+    question: 'How is the Caregiver certification accredited for international and Nepal employment?',
+    answer:
+      'Enlight Academy Pvt. Ltd. is an approved City & Guilds (UK) training centre for Health & Social Care (Level 2 Diploma in Age Care) as well as a CTEVT-affiliated short-course provider. City & Guilds (UK) qualifications carry international vocational recognition across the United Kingdom, Europe, Japan care pathways, and domestic health facilities, while CTEVT short courses align with Nepal National Skill Testing Board standards.',
+    relatedProgramId: 'city-guilds-caregiver',
+    relatedProgramLabel: 'Caregiver & City & Guilds Diploma',
+  },
+  {
+    id: 'faq-cert-fellowships-ipc',
+    category: 'certification',
+    categoryLabel: 'Certification Validity',
+    question: 'Do Fellows and FMG/IMG Observership candidates receive verified competency dossiers?',
+    answer:
+      'Yes. Graduates completing Critical Care Nursing, Dialysis Assistance, OT Assistance, Regional Anesthesia & Pain Medicine, Laparoscopic Training, or FMG/IMG Clinical Observerships receive formal institutional certificates detailing clinical contact hours, procedure logs, OSCE pass assessments, and attending faculty verification.',
+    relatedProgramId: 'international-observership-fmg',
+    relatedProgramLabel: 'FMG / IMG Clinical Observership',
+  },
+  {
+    id: 'faq-prereq-nursing-icu',
+    category: 'prerequisites',
+    categoryLabel: 'Prerequisites',
+    question: 'What are the prerequisites for Critical Care Nursing, Ventilator Workshop, and Dialysis Assistance?',
+    answer:
+      'Critical Care Nursing and Dialysis Assistance are open to PCL Nursing, B.Sc. Nursing, BNS, and registered allied health graduates (with council license or final-year academic clearance). The Mechanical Ventilator Workshop welcomes ICU/CCU nurses, medical officers, and postgraduate residents seeking practical waveform and ABG fluency.',
+    relatedProgramId: 'critical-care-nurse-training',
+    relatedProgramLabel: 'Critical Care Nursing',
+  },
+  {
+    id: 'faq-prereq-caregiver',
+    category: 'prerequisites',
+    categoryLabel: 'Prerequisites',
+    question: 'Do I need a prior nursing degree to enrol in Caregiver or First Aid courses?',
+    answer:
+      'No prior nursing degree is required for the City & Guilds (UK) Level 2 Caregiver Diploma, CTEVT vocational short courses, or First Aid & Emergency Management. Candidates with +2/high-school completion (or relevant healthcare entrant background) and strong motivation for safe patient and elder care are eligible after counselling screening.',
+    relatedProgramId: 'city-guilds-caregiver',
+    relatedProgramLabel: 'Caregiver & City & Guilds Diploma',
+  },
+  {
+    id: 'faq-prereq-doctors-fellowship',
+    category: 'prerequisites',
+    categoryLabel: 'Prerequisites',
+    question: 'Who is eligible for Regional Anesthesia, Laparoscopic Training, and FMG/IMG Licensure?',
+    answer:
+      'Fellowship Training on Regional Anesthesia & Pain Medicine requires an MD/MS Anesthesia qualification or active postgraduate residency. Fellowship in Laparoscopic Training is open to General Surgeons, Gynecologists, surgical residents, and qualified medical graduates. Foreign Trained Doctor Licensure (NMCLE) and FMG/IMG Clinical Observership tracks accept MBBS graduates holding verified medical university transcripts.',
+    relatedProgramId: 'fellowship-regional-anesthesia',
+    relatedProgramLabel: 'Regional Anesthesia Fellowship',
+  },
+];
+
+export type AcademicUpdateType = 'deadline' | 'cohort';
+
+export interface AcademicUpdateItem {
+  id: string;
+  type: AcademicUpdateType;
+  tagLabel: string;
+  dateText: string;
+  headline: string;
+  programId: string;
+  actionLabel: string;
+}
+
+export const ACADEMIC_UPDATES: AcademicUpdateItem[] = [
+  {
+    id: 'upd-acls-bls-nov',
+    type: 'deadline',
+    tagLabel: 'Registration Deadline',
+    dateText: 'Nov 22, 2026',
+    headline: 'AHA / Non-AHA BLS & ACLS Megacode Batch (Starts Nov 25) — 4 Seats Remaining',
+    programId: 'aha-non-aha-bls-acls',
+    actionLabel: 'Reserve Seat',
+  },
+  {
+    id: 'upd-caregiver-dec',
+    type: 'cohort',
+    tagLabel: 'Cohort Start',
+    dateText: 'Dec 01, 2026',
+    headline: 'City & Guilds (UK) Level 2 Caregiver & CTEVT Morning Intake Opens Admissions',
+    programId: 'city-guilds-caregiver',
+    actionLabel: 'Apply Now',
+  },
+  {
+    id: 'upd-nclex-osce-nov',
+    type: 'deadline',
+    tagLabel: 'Urgent Deadline',
+    dateText: 'Nov 24, 2026',
+    headline: 'Next-Gen NCLEX-RN & NMC UK 10-Station OSCE Mock Series Registration Closes',
+    programId: 'global-nursing-licensure',
+    actionLabel: 'Enrol Track',
+  },
+  {
+    id: 'upd-ventilator-dec',
+    type: 'cohort',
+    tagLabel: 'Workshop Dates',
+    dateText: 'Dec 04 – 07, 2026',
+    headline: 'Intensive Mechanical Ventilator Waveform & ABG Troubleshooting Workshop',
+    programId: 'ventilator-workshop',
+    actionLabel: 'Book Slot',
+  },
+  {
+    id: 'upd-critical-care-dec',
+    type: 'cohort',
+    tagLabel: 'Cohort Start',
+    dateText: 'Dec 08, 2026',
+    headline: 'Critical Care Nursing (8-Week ICU Simulation) & Dialysis Assistance Evening Batch',
+    programId: 'critical-care-nurse-training',
+    actionLabel: 'Apply Batch',
+  },
+  {
+    id: 'upd-fellowship-dec',
+    type: 'deadline',
+    tagLabel: 'Fellowship Intake',
+    dateText: 'Nov 30, 2026',
+    headline: 'Regional Anesthesia & Laparoscopic Simulation Fellowships — December Dossier Cutoff',
+    programId: 'fellowship-regional-anesthesia',
+    actionLabel: 'Submit Inquiry',
+  },
+];
+

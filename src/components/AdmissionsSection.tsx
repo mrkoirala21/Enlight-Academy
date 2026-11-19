@@ -1,7 +1,8 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { CheckCircle2, Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { CheckCircle2, Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { ACADEMY_FACTS, COURSE_PROGRAMS } from '../data/academyData';
 import {
+  buildWhatsAppUrl,
   generateReferenceCode,
   InquiryFormInput,
   validateInquiryForm,
@@ -121,6 +122,25 @@ export function AdmissionsSection({
                   <div>
                     <dt className="text-xs text-[#56695E]">Admissions Telephone</dt>
                     <dd className="font-medium text-[#102018] tabular-nums">{ACADEMY_FACTS.phone}</dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MessageCircle className="h-4 w-4 text-[#157347] shrink-0 mt-1" aria-hidden="true" />
+                  <div>
+                    <dt className="text-xs text-[#56695E]">WhatsApp Admissions Desk</dt>
+                    <dd className="font-medium tabular-nums">
+                      <a
+                        href={buildWhatsAppUrl(
+                          ACADEMY_FACTS.whatsappNumber,
+                          'Hello Enlight Academy Admissions Team, I would like cohort and fee details.'
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#157347] hover:underline"
+                      >
+                        {ACADEMY_FACTS.whatsappIntl}
+                      </a>
+                    </dd>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

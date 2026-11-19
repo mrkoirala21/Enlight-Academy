@@ -32,6 +32,7 @@ interface SpotlightTrack {
   imageSrc: string;
   imageAlt: string;
   imageAspect: string;
+  imagePosition?: string;
   highlights: string[];
   programId: string;
 }
@@ -46,10 +47,11 @@ const SPOTLIGHT_TRACKS: SpotlightTrack[] = [
       'Megacode team resuscitation, 12-lead arrhythmia recognition, airway management, and post-cardiac arrest care.',
     duration: '3 – 5 Days Simulation',
     pathway: 'AHA & Non-AHA Provider Tracks',
-    imageSrc: '/src/assets/images/acls_bls_simulation_lab_1794907974608.jpg',
+    imageSrc: '/assets/aistudio/image_2775743c.png',
     imageAlt:
-      'Enlight Academy clinical team practising ACLS megacode resuscitation with simulation manikin and cardiac monitor',
+      'Enlight Academy clinical team performing ACLS chest compressions and bag-mask airway resuscitation on simulation manikin',
     imageAspect: 'aspect-video',
+    imagePosition: 'object-[50%_18%]',
     highlights: [
       'Bradycardia, Tachycardia & Cardiac Arrest Algorithms',
       'Synchronized Cardioversion & Defibrillation Drills',
@@ -112,16 +114,16 @@ export function HeroSection({
 
   return (
     <section id="top" className="bg-white border-b border-[#DCE3DE]">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 lg:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-stretch">
           {/* Left Column: Editorial Headline & Core Institutional Proposition */}
-          <div className="lg:col-span-7 flex flex-col justify-between gap-8">
-            <div className="space-y-5">
+          <div className="lg:col-span-7 flex flex-col justify-between gap-6">
+            <div className="space-y-4">
               <p className="text-xs font-medium tracking-wide text-[#0E5A5A]">
                 {ACADEMY_FACTS.legalName} · {ACADEMY_FACTS.location} · City &amp; Guilds (UK) Approved Centre
               </p>
 
-              <h1 className="font-editorial text-4xl sm:text-5xl lg:text-[3.35rem] font-semibold tracking-tight leading-[1.12] text-[#102018] text-balance max-w-2xl">
+              <h1 className="font-editorial text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.12] text-[#102018] text-balance max-w-2xl">
                 Clinical Life Support &amp; Certified Caregiver Training
               </h1>
 
@@ -133,7 +135,7 @@ export function HeroSection({
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="button"
@@ -167,9 +169,9 @@ export function HeroSection({
 
           {/* Right Column: Interactive ACLS / BLS / Caregiver Showcase Card */}
           <div className="lg:col-span-5 flex">
-            <div className="w-full bg-[#F7F9F7] border border-[#DCE3DE] rounded-xl p-6 sm:p-7 flex flex-col justify-between gap-4">
+            <div className="w-full bg-[#F7F9F7] border border-[#DCE3DE] rounded-xl p-5 flex flex-col justify-between gap-3">
               {/* Institutional Seal + Track Switcher */}
-              <div className="space-y-4 pb-4 border-b border-[#DCE3DE]">
+              <div className="space-y-2.5 pb-2.5 border-b border-[#DCE3DE]">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="h-11 w-11 rounded-lg bg-white p-1 flex items-center justify-center shrink-0">
@@ -223,14 +225,14 @@ export function HeroSection({
               <div
                 role="tabpanel"
                 aria-label={`${currentTrack.title} summary`}
-                className="space-y-4 flex-1 flex flex-col justify-between"
+                className="space-y-3 flex-1 flex flex-col justify-between"
               >
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   <AcademyPhoto
                     src={currentTrack.imageSrc}
                     alt={currentTrack.imageAlt}
-                    aspectClass={currentTrack.imageAspect}
-                    objectPositionClass="object-[50%_26%]"
+                    aspectClass="aspect-[16/8.5]"
+                    objectPositionClass={currentTrack.imagePosition ?? 'object-[50%_26%]'}
                   />
 
                   <div className="flex items-center justify-between gap-2 text-xs pt-1">
@@ -261,7 +263,7 @@ export function HeroSection({
                   </ul>
                 </div>
 
-                <div className="pt-4 border-t border-[#DCE3DE] space-y-3">
+                <div className="pt-3 border-t border-[#DCE3DE] space-y-2.5">
                   <div className="flex items-baseline justify-between gap-2 text-xs">
                     <span className="text-[#56695E]">{currentTrack.pathway}</span>
                     <span className="font-mono font-medium text-[#102018] tabular-nums">

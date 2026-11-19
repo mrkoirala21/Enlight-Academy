@@ -116,10 +116,10 @@ export function HomeOverviewSections({
             <article className="lg:col-span-7 bg-[#164424] text-white rounded-xl p-7 sm:p-8 flex flex-col justify-between gap-6">
               <div className="space-y-5">
                 <AcademyPhoto
-                  src="/src/assets/images/acls_bls_simulation_lab_1794907974608.jpg"
-                  alt="Instructors and clinicians performing AHA ACLS cardiac arrest simulation with defibrillator cart and ECG telemetry in Kathmandu"
+                  src="/assets/aistudio/image_2775743c.png"
+                  alt="Instructors and clinicians performing AHA ACLS and BLS team resuscitation with bag-mask ventilation and chest compressions"
                   aspectClass="aspect-video"
-                  objectPositionClass="object-[50%_26%]"
+                  objectPositionClass="object-[50%_18%]"
                 />
 
                 <div className="flex items-center justify-between gap-3 text-xs text-white/80">

@@ -27,8 +27,43 @@
   font-variant-numeric: tabular-nums;
 }
 
+@keyframes academic-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.academic-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: academic-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.academic-marquee-track[data-paused='true'] {
+  animation-play-state: paused;
+}
+
+.academic-marquee-viewport:hover .academic-marquee-track,
+.academic-marquee-viewport:focus-within .academic-marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  .academic-marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .academic-marquee-track {
+    animation: none;
+    transform: none;
+  }
 }
+

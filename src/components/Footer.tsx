@@ -1,5 +1,5 @@
 import { ACADEMY_FACTS } from '../data/academyData';
-import { getPathForRoute, PageRoute } from '../utils/academyLogic';
+import { buildWhatsAppUrl, getPathForRoute, PageRoute } from '../utils/academyLogic';
 
 interface FooterProps {
   onNavigate: (route: PageRoute) => void;
@@ -106,11 +106,24 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>CTEVT Affiliated Healthcare Programmes</li>
               <li>{ACADEMY_FACTS.email}</li>
               <li className="tabular-nums">{ACADEMY_FACTS.phone}</li>
+              <li className="tabular-nums">
+                <a
+                  href={buildWhatsAppUrl(
+                    ACADEMY_FACTS.whatsappNumber,
+                    'Hello Enlight Academy, I would like admissions details.'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-[#164424] hover:underline"
+                >
+                  WhatsApp: {ACADEMY_FACTS.whatsappIntl}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#56695E]">
+        <div className="pt-6 pb-10 sm:pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#56695E]">
           <p>© {new Date().getFullYear()} {ACADEMY_FACTS.legalName} All rights reserved.</p>
           <p>Live Classes · Online Courses · Mock Tests · Clinical Simulation</p>
         </div>

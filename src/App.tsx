@@ -11,6 +11,9 @@ import { PageHeader } from './components/PageHeader';
 import { ProgramCatalog } from './components/ProgramCatalog';
 import { ProgramDetailModal } from './components/ProgramDetailModal';
 import { SimulationPage } from './components/SimulationPage';
+import { FloatingSupportWidget } from './components/FloatingSupportWidget';
+import { FAQ } from './components/FAQ';
+import { AcademicUpdatesBanner } from './components/AcademicUpdatesBanner';
 import { getPathForRoute, PageRoute, parseRouteFromLocation } from './utils/academyLogic';
 
 const STORAGE_KEY = 'enlight_academy_inquiries_v1';
@@ -90,6 +93,9 @@ export default function App() {
       <main className="flex-1">
         {currentRoute === 'home' && (
           <>
+            <AcademicUpdatesBanner
+              onApplyProgramId={(programId) => handleApplyForProgram(programId)}
+            />
             <HeroSection
               onBrowsePrograms={() => navigateTo('programs')}
               onOpenApply={() => navigateTo('admissions')}
@@ -164,11 +170,23 @@ export default function App() {
               submittedInquiries={submittedInquiries}
               onSubmitInquiry={handleAddInquiry}
             />
+            <FAQ
+              onSelectProgramForAdmissions={(programId) => {
+                setPreselectedProgramId(programId);
+                document.getElementById('admissions')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
           </>
         )}
       </main>
 
       <Footer onNavigate={navigateTo} />
+
+      <FloatingSupportWidget
+        onNavigate={navigateTo}
+        onSelectProgram={(program) => setSelectedProgram(program)}
+        onApplyProgramId={(programId) => handleApplyForProgram(programId)}
+      />
 
       <ProgramDetailModal
         program={selectedProgram}

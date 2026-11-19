@@ -1,11 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { COURSE_PROGRAMS } from '../data/academyData';
 import {
+  ACADEMY_FACTS,
+  ACADEMY_FAQS,
+  ACADEMIC_UPDATES,
+  COURSE_PROGRAMS,
+  LICENSURE_TRACKS,
+} from '../data/academyData';
+import {
+  buildWhatsAppUrl,
+  countFaqsByTopic,
   countProgramsByGroup,
   countTestimonialsByExam,
+  filterAcademicUpdates,
+  filterFaqsByTopic,
   filterPrograms,
   filterTestimonialsByExam,
+  generateBotReply,
   generateReferenceCode,
   getPathForRoute,
   parseRouteFromLocation,
@@ -147,3 +158,83 @@ test('filterTestimonialsByExam and countTestimonialsByExam group student pass st
   assert.equal(counts.nnc, 1);
   assert.equal(counts['middle-east'], 0);
 });
+
+test('buildWhatsAppUrl normalizes Nepal 9809494619 to +977 format and encodes messages', () => {
+  assert.equal(buildWhatsAppUrl('9809494619'), 'https://wa.me/9779809494619');
+  assert.equal(
+    buildWhatsAppUrl('9809494619', 'Hello ACLS batch'),
+    'https://wa.me/9779809494619?text=Hello%20ACLS%20batch'
+  );
+  assert.equal(buildWhatsAppUrl('+977 9809494619'), 'https://wa.me/9779809494619');
+});
+
+test('generateBotReply matches flagship programmes and falls back with WhatsApp handoff', () => {
+  const licensureNames = LICENSURE_TRACKS.map((t) => t.name);
+
+  const aclsReply = generateBotReply(
+    'When is the next ACLS and BLS batch?',
+    COURSE_PROGRAMS,
+    licensureNames,
+    ACADEMY_FACTS.whatsappNumber,
+    ACADEMY_FACTS.hours
+  );
+  assert.equal(aclsReply.matchedProgramId, 'aha-non-aha-bls-acls');
+  assert.ok(aclsReply.text.includes('9809494619'));
+
+  const caregiverReply = generateBotReply(
+    'Tell me about City & Guilds Caregiver diploma',
+    COURSE_PROGRAMS,
+    licensureNames,
+    ACADEMY_FACTS.whatsappNumber,
+    ACADEMY_FACTS.hours
+  );
+  assert.equal(caregiverReply.matchedProgramId, 'city-guilds-caregiver');
+
+  const nclexReply = generateBotReply(
+    'Do you have NCLEX-RN and UK OSCE preparation?',
+    COURSE_PROGRAMS,
+    licensureNames,
+    ACADEMY_FACTS.whatsappNumber,
+    ACADEMY_FACTS.hours
+  );
+  assert.equal(nclexReply.suggestedRoute, 'licensure');
+
+  const fallbackReply = generateBotReply(
+    'Any custom hostel arrangement?',
+    COURSE_PROGRAMS,
+    licensureNames,
+    ACADEMY_FACTS.whatsappNumber,
+    ACADEMY_FACTS.hours
+  );
+  assert.ok(fallbackReply.whatsappPrefill.includes('Any custom hostel arrangement?'));
+  assert.ok(fallbackReply.text.includes('9809494619'));
+});
+
+test('filterFaqsByTopic and countFaqsByTopic cover enrollment, certification, and prerequisites', () => {
+  assert.equal(filterFaqsByTopic(ACADEMY_FAQS, 'all').length, ACADEMY_FAQS.length);
+  assert.equal(filterFaqsByTopic(ACADEMY_FAQS, 'enrollment').length, 3);
+  assert.equal(filterFaqsByTopic(ACADEMY_FAQS, 'certification').length, 3);
+  assert.equal(filterFaqsByTopic(ACADEMY_FAQS, 'prerequisites').length, 3);
+
+  const counts = countFaqsByTopic(ACADEMY_FAQS);
+  assert.equal(counts.all, 9);
+  assert.equal(counts.enrollment + counts.certification + counts.prerequisites, counts.all);
+});
+
+test('ACADEMIC_UPDATES reference valid COURSE_PROGRAMS and filter by deadline or cohort', () => {
+  const validProgramIds = new Set(COURSE_PROGRAMS.map((p) => p.id));
+  assert.ok(ACADEMIC_UPDATES.length >= 4);
+  for (const item of ACADEMIC_UPDATES) {
+    assert.ok(validProgramIds.has(item.programId), `Invalid programId: ${item.programId}`);
+    assert.ok(item.dateText.trim().length > 0);
+    assert.ok(item.headline.trim().length > 0);
+  }
+
+  assert.equal(filterAcademicUpdates(ACADEMIC_UPDATES, 'all').length, ACADEMIC_UPDATES.length);
+  const deadlines = filterAcademicUpdates(ACADEMIC_UPDATES, 'deadline');
+  const cohorts = filterAcademicUpdates(ACADEMIC_UPDATES, 'cohort');
+  assert.ok(deadlines.length > 0);
+  assert.ok(cohorts.length > 0);
+  assert.equal(deadlines.length + cohorts.length, ACADEMIC_UPDATES.length);
+});
+
