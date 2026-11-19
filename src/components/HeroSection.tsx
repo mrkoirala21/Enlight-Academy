@@ -8,6 +8,7 @@ import {
   HeartHandshake,
   HeartPulse,
   ShieldCheck,
+  Stethoscope,
 } from 'lucide-react';
 import { ACADEMY_FACTS, COURSE_PROGRAMS, CourseProgram } from '../data/academyData';
 import { AcademyPhoto } from './AcademyPhoto';
@@ -19,7 +20,7 @@ interface HeroSectionProps {
   onApplyProgramId: (programId: string) => void;
 }
 
-type SpotlightKey = 'acls' | 'bls' | 'caregiver';
+type SpotlightKey = 'acls' | 'bls' | 'caregiver' | 'critical-care';
 
 interface SpotlightTrack {
   key: SpotlightKey;
@@ -98,6 +99,27 @@ const SPOTLIGHT_TRACKS: SpotlightTrack[] = [
       'Global Readiness for UK, Europe & Japan Care Roles',
     ],
     programId: 'city-guilds-caregiver',
+  },
+  {
+    key: 'critical-care',
+    tabLabel: 'Critical Care',
+    code: 'EA-NUR-101 · ICU & Critical Care',
+    title: 'Critical Care & ICU Nursing Training',
+    subtitle:
+      'Intensive bedside ICU competencies in hemodynamic monitoring, mechanical ventilation, ABG interpretation, and sepsis care.',
+    duration: '8 Weeks Intensive',
+    pathway: 'PCL / B.Sc. / BNS Registered Nurses',
+    imageSrc: '/src/assets/images/icu_ventilator_clinical_lab_1794907975520.jpg',
+    imageAlt:
+      'Critical Care nurse educator demonstrating ICU mechanical ventilator waveforms and bedside monitoring in simulation lab',
+    imageAspect: 'aspect-video',
+    imagePosition: 'object-[50%_22%]',
+    highlights: [
+      'ABG Interpretation & Acid-Base Clinical Drills',
+      'Invasive & Non-Invasive Ventilator Management',
+      'Hemodynamic Monitoring & OSCE Station Mastery',
+    ],
+    programId: 'critical-care-nurse-training',
   },
 ];
 
@@ -193,11 +215,11 @@ export function HeroSection({
                   </div>
                 </div>
 
-                {/* Segmented Switcher for ACLS / BLS / Caregiver */}
+                {/* Segmented Switcher for ACLS / BLS / Caregiver / Critical Care */}
                 <div
                   role="tablist"
-                  aria-label="Featured ACLS, BLS and Caregiver tracks"
-                  className="grid grid-cols-3 gap-1.5 p-1 bg-white border border-[#DCE3DE] rounded-lg"
+                  aria-label="Featured ACLS, BLS, Caregiver and Critical Care tracks"
+                  className="flex items-center gap-1 p-1 bg-white border border-[#DCE3DE] rounded-lg"
                 >
                   {SPOTLIGHT_TRACKS.map((track) => {
                     const isSelected = track.key === activeSpotlight;
@@ -208,7 +230,7 @@ export function HeroSection({
                         role="tab"
                         aria-selected={isSelected}
                         onClick={() => setActiveSpotlight(track.key)}
-                        className={`py-2 px-2 text-xs font-semibold rounded-md cursor-pointer whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164424] ${
+                        className={`flex-auto py-2 px-2 text-[11px] sm:text-xs font-semibold rounded-md cursor-pointer whitespace-nowrap shrink-0 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164424] ${
                           isSelected
                             ? 'bg-[#164424] text-white'
                             : 'text-[#3E4F45] hover:text-[#102018] hover:bg-[#F7F9F7]'
@@ -245,6 +267,9 @@ export function HeroSection({
                     )}
                     {currentTrack.key === 'caregiver' && (
                       <HeartHandshake className="h-4 w-4 text-[#164424] shrink-0" aria-hidden="true" />
+                    )}
+                    {currentTrack.key === 'critical-care' && (
+                      <Stethoscope className="h-4 w-4 text-[#164424] shrink-0" aria-hidden="true" />
                     )}
                   </div>
 
